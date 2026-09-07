@@ -4,905 +4,557 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>MPLADS AI Guard</title>
 
 <style>
-
-/* =========================================
-   GLOBAL
-========================================= */
 
 * {
     box-sizing: border-box;
 }
 
 body {
+
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f3f6fa;
-    color: #123b70;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        #eef3f8;
+
+    color:
+        #123d70;
 }
 
 header {
-    background: linear-gradient(135deg, #174d87, #2d70b7);
-    color: white;
-    padding: 28px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+    background:
+        #0d477d;
+
+    color:
+        white;
+
+    padding:
+        24px 6%;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
 }
 
 header h1 {
-    margin: 0;
-    font-size: 32px;
-}
 
-header p {
-    margin: 8px 0 0;
-    font-size: 17px;
-    opacity: .85;
+    margin: 0;
+
+    font-size:
+        28px;
 }
 
 .status {
-    background: rgba(255,255,255,.15);
-    padding: 14px 22px;
-    border-radius: 30px;
+
+    background:
+        #16a36a;
+
+    padding:
+        8px 16px;
+
+    border-radius:
+        20px;
+
+    font-size:
+        14px;
 }
 
-.dot {
-    color: #2ee59d;
-    font-size: 20px;
-}
+.container {
 
-main {
-    width: 90%;
-    max-width: 1500px;
-    margin: 40px auto;
-}
+    width:
+        92%;
 
-.title {
-    margin-bottom: 25px;
-}
+    max-width:
+        1400px;
 
-.title h2 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.title p {
-    color: #607da0;
-    font-size: 18px;
-}
-
-/* =========================================
-   CONTROLS
-========================================= */
-
-.controls {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-}
-
-button,
-select,
-input {
-    height: 55px;
-    border-radius: 10px;
-    font-size: 16px;
-}
-
-button {
-    border: none;
-    background: #246db3;
-    color: white;
-    padding: 0 22px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-button:hover {
-    background: #185b9b;
-}
-
-select,
-input {
-    border: 1px solid #ccd8e7;
-    background: white;
-    padding: 0 15px;
-}
-
-select {
-    min-width: 420px;
-}
-
-/* =========================================
-   SUMMARY CARDS
-========================================= */
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 22px;
-    margin-bottom: 30px;
+    margin:
+        30px auto;
 }
 
 .card {
-    background: white;
-    padding: 27px;
-    border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(20,55,90,.08);
+
+    background:
+        white;
+
+    border-radius:
+        18px;
+
+    padding:
+        28px;
+
+    margin-bottom:
+        25px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.08);
 }
 
-.card h3 {
-    margin: 0;
-    color: #607da0;
-    font-size: 15px;
+h2 {
+
+    margin-top:
+        0;
+
+    color:
+        #0d477d;
 }
 
-.number {
-    font-size: 48px;
-    font-weight: bold;
-    margin: 15px 0 8px;
+select,
+input,
+textarea {
+
+    width:
+        100%;
+
+    padding:
+        14px;
+
+    border:
+        1px solid #ccd8e5;
+
+    border-radius:
+        10px;
+
+    font-size:
+        15px;
+
+    margin-top:
+        8px;
+
+    margin-bottom:
+        15px;
 }
 
-.blue {
-    color: #2672ca;
+button {
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    padding:
+        13px 22px;
+
+    background:
+        #1976c9;
+
+    color:
+        white;
+
+    font-size:
+        15px;
+
+    cursor:
+        pointer;
+
+    font-weight:
+        bold;
+}
+
+button:hover {
+
+    background:
+        #125b99;
+}
+
+.grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        18px;
+}
+
+.stat {
+
+    padding:
+        25px;
+
+    border-radius:
+        15px;
+
+    background:
+        #f7fbff;
+}
+
+.stat-number {
+
+    font-size:
+        38px;
+
+    font-weight:
+        bold;
 }
 
 .red {
-    color: #e84951;
+    color: #e53935;
 }
 
 .orange {
-    color: #e9970d;
+    color: #ed8b00;
 }
 
 .green {
-    color: #159b72;
+    color: #13a16b;
 }
 
-.card p {
-    color: #607da0;
-    margin: 0;
+.blue {
+    color: #1976c9;
 }
 
-/* =========================================
-   DASHBOARD
-========================================= */
+.project-info {
 
-.dashboard {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 25px;
-    margin-bottom: 30px;
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        15px;
 }
 
-.panel,
-.section {
-    background: white;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 8px 25px rgba(20,55,90,.08);
+.info-box {
+
+    background:
+        #f5f9fd;
+
+    padding:
+        18px;
+
+    border-radius:
+        12px;
 }
-
-.panel h2,
-.section h2 {
-    margin-top: 0;
-}
-
-/* =========================================
-   PROGRESS BARS
-========================================= */
-
-.bars {
-    height: 280px;
-    display: flex;
-    align-items: end;
-    gap: 12px;
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
-}
-
-.bar-group {
-    height: 100%;
-    flex: 1;
-    display: flex;
-    align-items: end;
-    gap: 4px;
-}
-
-.bar {
-    flex: 1;
-    border-radius: 5px 5px 0 0;
-}
-
-.financial {
-    background: #4b9ed8;
-}
-
-.physical {
-    background: #ef829d;
-}
-
-.legend {
-    text-align: center;
-    margin-top: 15px;
-    color: #607da0;
-}
-
-/* =========================================
-   RISK
-========================================= */
-
-.risk-list {
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-    margin-top: 35px;
-}
-
-.risk-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.risk-label {
-    width: 75px;
-}
-
-.risk-bar {
-    flex: 1;
-    height: 18px;
-    background: #edf1f5;
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.risk-fill {
-    height: 100%;
-}
-
-.critical-fill {
-    background: #e84951;
-}
-
-.high-fill {
-    background: #e9970d;
-}
-
-.normal-fill {
-    background: #20a678;
-}
-
-/* =========================================
-   PROJECT INVESTIGATION
-========================================= */
-
-.section {
-    margin-bottom: 30px;
-}
-
-.project-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.project-header p {
-    color: #607da0;
-}
-
-.risk {
-    padding: 12px 20px;
-    border-radius: 25px;
-    font-weight: bold;
-}
-
-.risk-critical {
-    background: #ffe1e1;
-    color: #d8323b;
-}
-
-.risk-high {
-    background: #fff0d5;
-    color: #bd7100;
-}
-
-.risk-normal {
-    background: #dff7ee;
-    color: #07855d;
-}
-
-.metrics {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 15px;
-    margin: 25px 0;
-}
-
-.metric {
-    border: 1px solid #dce4ed;
-    padding: 20px;
-    border-radius: 12px;
-}
-
-.metric span {
-    display: block;
-    color: #607da0;
-    margin-bottom: 10px;
-}
-
-.metric strong {
-    font-size: 28px;
-}
-
-.finding {
-    background: #fff7e6;
-    border-left: 6px solid #e9970d;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 15px;
-}
-
-.action {
-    background: #eaf3ff;
-    border-left: 6px solid #2875c5;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 15px;
-}
-
-.finding p,
-.action p {
-    line-height: 1.6;
-    margin-bottom: 0;
-}
-
-.loading {
-    color: #607da0;
-}
-
-.error {
-    background: #fff0f0;
-    border-left: 6px solid #e84951;
-    padding: 20px;
-    border-radius: 10px;
-    color: #c52727;
-}
-
-/* =========================================
-   CONSTRUCTION VERIFICATION
-========================================= */
-
-.verification-intro {
-    color: #607da0;
-    line-height: 1.6;
-}
-
-.verification-form {
-    display: grid;
-    grid-template-columns: 1fr 160px 1.5fr 180px;
-    gap: 15px;
-    margin-top: 25px;
-}
-
-.verification-form input,
-.verification-form select {
-    width: 100%;
-}
-
-.photo-preview {
-    display: none;
-    margin-top: 25px;
-}
-
-.photo-preview img {
-    max-width: 420px;
-    max-height: 280px;
-    border-radius: 12px;
-    border: 1px solid #dce4ed;
-    object-fit: cover;
-}
-
-.visual-card {
-    margin-top: 25px;
-    border: 1px solid #dce4ed;
-    border-radius: 15px;
-    padding: 25px;
-}
-
-.visual-status {
-    display: inline-block;
-    padding: 12px 20px;
-    border-radius: 25px;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.status-delay {
-    background: #fff0d5;
-    color: #bd7100;
-}
-
-.status-track {
-    background: #dff7ee;
-    color: #07855d;
-}
-
-.status-ahead {
-    background: #e5efff;
-    color: #246db3;
-}
-
-.visual-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.visual-metric {
-    background: #f7f9fc;
-    padding: 18px;
-    border-radius: 10px;
-}
-
-.visual-metric span {
-    display: block;
-    color: #607da0;
-    font-size: 14px;
-    margin-bottom: 8px;
-}
-
-.visual-metric strong {
-    font-size: 20px;
-}
-
-.disclaimer {
-    margin-top: 20px;
-    font-size: 13px;
-    color: #718096;
-    background: #f5f7fa;
-    padding: 14px;
-    border-radius: 8px;
-}
-
-/* =========================================
-   AI WORKFLOW
-========================================= */
 
 .workflow {
-    margin-top: 30px;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        12px;
 }
 
 .workflow-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    background: #f7faff;
-    border: 1px solid #dce7f3;
-    padding: 22px;
-    border-radius: 16px;
-    transition: .2s;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+
+    padding:
+        16px;
+
+    background:
+        #f5f9fd;
+
+    border-radius:
+        12px;
+
+    border-left:
+        5px solid #1976c9;
 }
 
-.workflow-step:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(20,55,90,.08);
+.step-number {
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border-radius:
+        50%;
+
+    background:
+        #1976c9;
+
+    color:
+        white;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-weight:
+        bold;
 }
 
-.workflow-number {
-    min-width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: #246db3;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    font-weight: bold;
+.construction {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap:
+        10px;
+
+    margin-top:
+        25px;
 }
 
-.workflow-step h3 {
-    margin: 0 0 8px;
-    color: #123b70;
+.stage {
+
+    min-height:
+        130px;
+
+    padding:
+        15px;
+
+    border-radius:
+        14px;
+
+    text-align:
+        center;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    font-weight:
+        bold;
 }
 
-.workflow-step p {
-    margin: 0;
-    color: #607da0;
-    line-height: 1.6;
+.completed {
+
+    background:
+        #dff7eb;
+
+    color:
+        #087a4b;
+
+    border:
+        2px solid #16a36a;
 }
 
-.workflow-line {
-    width: 3px;
-    height: 25px;
-    background: #b8cce2;
-    margin-left: 45px;
+.locked {
+
+    background:
+        #edf0f4;
+
+    color:
+        #8994a3;
+
+    border:
+        2px dashed #b9c1ca;
 }
 
-/* =========================================
-   PROBLEM ESTIMATOR
-========================================= */
+.stage-icon {
 
-.problem-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 15px;
-    margin-top: 25px;
+    font-size:
+        30px;
+
+    margin-bottom:
+        10px;
 }
 
-.estimate-result {
-    margin-top: 25px;
-    background: #eef8f4;
-    border-left: 6px solid #159b72;
-    padding: 25px;
-    border-radius: 12px;
+.alert {
+
+    padding:
+        18px;
+
+    border-radius:
+        12px;
+
+    margin-top:
+        15px;
+
+    display:
+        none;
 }
 
-.estimate-amount {
-    font-size: 38px;
-    font-weight: bold;
-    color: #159b72;
-    margin-top: 10px;
+.success {
+
+    background:
+        #e0f7ec;
+
+    color:
+        #087a4b;
 }
 
-/* =========================================
-   LOCATION / USER ENTRY
-========================================= */
+.warning {
 
-.entry-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-top: 20px;
+    background:
+        #fff4dd;
+
+    color:
+        #9b6500;
 }
 
-.entry-box {
-    background: #f7f9fc;
-    padding: 22px;
-    border-radius: 14px;
-    border: 1px solid #dce4ed;
+.danger {
+
+    background:
+        #ffe5e5;
+
+    color:
+        #c62828;
 }
 
-.entry-box h3 {
-    margin-top: 0;
+.result {
+
+    margin-top:
+        20px;
+
+    padding:
+        20px;
+
+    background:
+        #f5f9fd;
+
+    border-radius:
+        12px;
 }
 
-.entry-box input,
-.entry-box select {
-    width: 100%;
-    margin-bottom: 12px;
+.amount {
+
+    font-size:
+        32px;
+
+    color:
+        #13a16b;
+
+    font-weight:
+        bold;
 }
 
-.location-result {
-    margin-top: 15px;
-    padding: 15px;
-    background: #eaf3ff;
-    border-radius: 10px;
-}
+@media(max-width:900px) {
 
-/* =========================================
-   RESPONSIVE
-========================================= */
+    .grid {
 
-@media(max-width:1000px) {
-
-    .cards {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
-    .dashboard {
-        grid-template-columns: 1fr;
+    .project-info {
+
+        grid-template-columns:
+            1fr;
     }
 
-    .metrics {
-        grid-template-columns: repeat(2,1fr);
+    .construction {
+
+        grid-template-columns:
+            repeat(2, 1fr);
     }
-
-    .verification-form {
-        grid-template-columns: 1fr;
-    }
-
-    .problem-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .entry-grid {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-@media(max-width:600px) {
-
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
-    }
-
-    .metrics {
-        grid-template-columns: 1fr;
-    }
-
-    .visual-grid {
-        grid-template-columns: 1fr;
-    }
-
-    select {
-        min-width: 100%;
-    }
-
-    .workflow-step {
-        padding: 18px;
-    }
-
 }
 
 </style>
 
 </head>
 
+
 <body>
 
-<!-- =========================================
-     HEADER
-========================================= -->
 
 <header>
 
-<div>
-
-<h1>MPLADS AI GUARD</h1>
-
-<p>
-AI-Powered Monitoring & Anomaly Detection System
-</p>
-
-</div>
+<h1>🛡️ MPLADS AI Guard</h1>
 
 <div class="status">
-
-<span class="dot">●</span>
-
-AI Monitoring Active
-
+    ● AI Monitoring System Online
 </div>
 
 </header>
 
 
-<main>
-
-<!-- =========================================
-     TITLE
-========================================= -->
-
-<div class="title">
-
-<h2>MPLADS Project Intelligence Dashboard</h2>
-
-<p>
-Monitor financial utilization, physical progress,
-delays, anomalies and visual construction evidence.
-</p>
-
-</div>
+<div class="container">
 
 
-<!-- =========================================
-     CONTROLS
-========================================= -->
-
-<div class="controls">
-
-<button onclick="loadDashboard()">
-↻ Update Dashboard
-</button>
-
-<select
-id="projectSelect"
-onchange="investigateProject(this.value)"
->
-
-<option value="">
-Choose a project for AI investigation...
-</option>
-
-</select>
-
-</div>
-
-
-<!-- =========================================
-     SUMMARY
-========================================= -->
-
-<section class="cards">
+<!-- DASHBOARD -->
 
 <div class="card">
 
-<h3>TOTAL PROJECTS</h3>
+<h2>📊 AI Project Monitoring Dashboard</h2>
 
-<div
-class="number blue"
-id="totalProjects"
->
---
-</div>
+<div class="grid">
 
-<p>Projects monitored by AI</p>
+<div class="stat">
 
-</div>
-
-
-<div class="card">
-
-<h3>CRITICAL PROJECTS</h3>
-
-<div
-class="number red"
-id="criticalProjects"
->
---
-</div>
-
-<p>Require immediate attention</p>
-
-</div>
-
-
-<div class="card">
-
-<h3>HIGH RISK</h3>
-
-<div
-class="number orange"
-id="highProjects"
->
---
-</div>
-
-<p>Projects requiring review</p>
-
-</div>
-
-
-<div class="card">
-
-<h3>NORMAL</h3>
-
-<div
-class="number green"
-id="normalProjects"
->
---
-</div>
-
-<p>No major anomaly detected</p>
-
-</div>
-
-</section>
-
-
-<!-- =========================================
-     DASHBOARD CHARTS
-========================================= -->
-
-<section class="dashboard">
-
-<div class="panel">
-
-<h2>
-Financial vs Physical Progress
-</h2>
-
-<div
-class="bars"
-id="bars"
-></div>
-
-<div class="legend">
-
-<span>■ Financial Progress</span>
-
-&nbsp;&nbsp;&nbsp;
-
-<span>■ Physical Progress</span>
-
-</div>
-
-</div>
-
-
-<div class="panel">
-
-<h2>
-AI Risk Distribution
-</h2>
-
-<div class="risk-list">
-
-<div class="risk-row">
-
-<div class="risk-label">
-Critical
-</div>
-
-<div class="risk-bar">
-
-<div
-id="criticalBar"
-class="risk-fill critical-fill"
-style="width:0%"
-></div>
-
-</div>
-
-<strong id="criticalCount">
+<div class="stat-number blue"
+     id="totalProjects">
 0
-</strong>
+</div>
+
+Projects monitored by AI
 
 </div>
 
 
-<div class="risk-row">
+<div class="stat">
 
-<div class="risk-label">
-High
-</div>
-
-<div class="risk-bar">
-
-<div
-id="highBar"
-class="risk-fill high-fill"
-style="width:0%"
-></div>
-
-</div>
-
-<strong id="highCount">
+<div class="stat-number red"
+     id="criticalProjects">
 0
-</strong>
+</div>
+
+Require immediate attention
 
 </div>
 
 
-<div class="risk-row">
+<div class="stat">
 
-<div class="risk-label">
-Normal
-</div>
-
-<div class="risk-bar">
-
-<div
-id="normalBar"
-class="risk-fill normal-fill"
-style="width:0%"
-></div>
-
-</div>
-
-<strong id="normalCount">
+<div class="stat-number orange"
+     id="highProjects">
 0
-</strong>
+</div>
+
+High-risk projects
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-number green"
+     id="normalProjects">
+0
+</div>
+
+Normal projects
 
 </div>
 
@@ -910,379 +562,20 @@ style="width:0%"
 
 </div>
 
-</section>
 
 
-<!-- =========================================
-     AI PROJECT INVESTIGATION
-========================================= -->
+<!-- PROJECT SELECTION -->
 
-<section class="section">
+<div class="card">
 
-<h2>
-🔎 AI Project Investigation
-</h2>
+<h2>🔎 AI Project Investigation</h2>
 
 <p>
-Select a project to understand detected risk
-indicators and recommended action.
+Select a project to understand its progress,
+risk indicators and recommended action.
 </p>
 
-<div id="result">
-
-<div class="loading">
-Select a project above to begin AI investigation.
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================
-     AI WORKFLOW
-========================================= -->
-
-<section class="section">
-
-<h2>
-🤖 AI Construction Monitoring Workflow
-</h2>
-
-<p class="verification-intro">
-
-The AI assistant follows a structured workflow to
-collect project information, identify risks, verify
-field evidence and recommend actions.
-
-</p>
-
-
-<div class="workflow">
-
-
-<div class="workflow-step">
-
-<div class="workflow-number">
-1
-</div>
-
-<div>
-
-<h3>
-📍 Collect Project Data
-</h3>
-
-<p>
-Collect project location, sanctioned amount,
-expenditure, physical progress and implementation data.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="workflow-line"></div>
-
-
-<div class="workflow-step">
-
-<div class="workflow-number">
-2
-</div>
-
-<div>
-
-<h3>
-👤 User / Officer Entry
-</h3>
-
-<p>
-Field officers can enter project updates,
-construction day, problems and observations.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="workflow-line"></div>
-
-
-<div class="workflow-step">
-
-<div class="workflow-number">
-3
-</div>
-
-<div>
-
-<h3>
-🧠 AI Risk Analysis
-</h3>
-
-<p>
-The system compares financial progress,
-physical progress, delays and cost variation
-to calculate project risk.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="workflow-line"></div>
-
-
-<div class="workflow-step">
-
-<div class="workflow-number">
-4
-</div>
-
-<div>
-
-<h3>
-📷 Visual Verification
-</h3>
-
-<p>
-Construction photographs are submitted as
-field evidence and compared with the expected
-construction stage.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="workflow-line"></div>
-
-
-<div class="workflow-step">
-
-<div class="workflow-number">
-5
-</div>
-
-<div>
-
-<h3>
-🚨 Detect Problem
-</h3>
-
-<p>
-AI identifies possible delays, abnormal
-expenditure, progress gaps and construction risks.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="workflow-line"></div>
-
-
-<div class="workflow-step">
-
-<div class="workflow-number">
-6
-</div>
-
-<div>
-
-<h3>
-💰 Estimate Impact
-</h3>
-
-<p>
-The system provides an indicative estimate of
-the potential financial impact of a reported problem.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="workflow-line"></div>
-
-
-<div class="workflow-step">
-
-<div class="workflow-number">
-7
-</div>
-
-<div>
-
-<h3>
-🎯 Recommend Action
-</h3>
-
-<p>
-AI generates a recommended next action such as
-field verification, document review or progress update.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="workflow-line"></div>
-
-
-<div class="workflow-step">
-
-<div class="workflow-number">
-8
-</div>
-
-<div>
-
-<h3>
-✅ Human Verification
-</h3>
-
-<p>
-The final decision remains with an authorized
-officer or engineer before official action is taken.
-</p>
-
-</div>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- =========================================
-     LOCATION + USER ENTRY
-========================================= -->
-
-<section class="section">
-
-<h2>
-📍 Field Officer & Location Entry
-</h2>
-
-<p class="verification-intro">
-
-Record who performed the field inspection and capture
-the project location for monitoring purposes.
-
-</p>
-
-
-<div class="entry-grid">
-
-
-<div class="entry-box">
-
-<h3>
-👤 Officer Details
-</h3>
-
-<input
-type="text"
-id="officerName"
-placeholder="Officer / User Name"
->
-
-<input
-type="text"
-id="officerRole"
-placeholder="Role"
->
-
-<input
-type="date"
-id="visitDate"
->
-
-<button onclick="saveOfficerEntry()">
-Save Field Entry
-</button>
-
-<div
-id="entryResult"
-class="location-result"
->
-No field entry saved yet.
-</div>
-
-</div>
-
-
-<div class="entry-box">
-
-<h3>
-📍 Project Location
-</h3>
-
-<input
-type="text"
-id="latitude"
-placeholder="Latitude"
->
-
-<input
-type="text"
-id="longitude"
-placeholder="Longitude"
->
-
-<button onclick="getLocation()">
-Use Current Location
-</button>
-
-<div
-id="locationResult"
-class="location-result"
->
-Location not captured.
-</div>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- =========================================
-     CONSTRUCTION VERIFICATION
-========================================= -->
-
-<section class="section">
-
-<h2>
-📷 AI Construction Progress Verification
-</h2>
-
-<p class="verification-intro">
-
-Upload a construction-site photograph and compare
-the observed construction stage with the expected
-stage for the selected project day.
-
-</p>
-
-
-<div class="verification-form">
-
-
-<select id="visualProject">
+<select id="projectSelect">
 
 <option value="">
 Select project...
@@ -1290,1502 +583,1123 @@ Select project...
 
 </select>
 
-
-<input
-type="number"
-id="constructionDay"
-min="1"
-placeholder="Construction Day"
->
-
-
-<input
-type="file"
-id="constructionPhoto"
-accept="image/*"
-onchange="previewPhoto()"
->
-
-
-<button onclick="analyzeConstruction()">
-🔍 Analyze
-</button>
-
+<div id="projectDetails"></div>
 
 </div>
 
 
-<div
-id="photoPreview"
-class="photo-preview"
->
+
+<!-- CONSTRUCTION WORKFLOW -->
+
+<div class="card">
+
+<h2>🏗️ AI Construction Progress</h2>
 
 <p>
-<strong>Uploaded construction photo:</strong>
+Green stages are completed.
+Locked stages are yet to be completed.
 </p>
 
-<img
-id="previewImage"
-alt="Construction preview"
->
-
-</div>
-
-
-<div id="visualResult">
-
-<div class="loading">
-
-Upload a construction photo and select
-the project day to begin verification.
+<div id="constructionStages"
+     class="construction">
 
 </div>
 
 </div>
 
 
-<div class="disclaimer">
 
-⚠️ Prototype note:
-Visual assessment is an AI-assisted indication.
-Final physical verification should be confirmed
-by an authorized field officer or engineer.
+<!-- LOCATION -->
 
-</div>
+<div class="card">
 
-</section>
+<h2>📍 Location Verification</h2>
 
-
-<!-- =========================================
-     PROBLEM ESTIMATOR
-========================================= -->
-
-<section class="section">
-
-<h2>
-💰 Problem & Estimated Intervention Cost
-</h2>
-
-<p class="verification-intro">
-
-Enter the infrastructure problem observed at the site.
-The prototype provides an indicative intervention estimate
-to support planning and prioritization.
-
+<p>
+The system compares the registered project
+location with the latest detected location.
 </p>
 
+<button onclick="checkLocation()">
 
-<div class="problem-grid">
+📍 Verify Current Location
 
-
-<select id="problemType">
-
-<option value="">
-Select problem...
-</option>
-
-<option value="road">
-Road damage / repair
-</option>
-
-<option value="drainage">
-Drainage problem
-</option>
-
-<option value="water">
-Water supply problem
-</option>
-
-<option value="streetlight">
-Streetlight problem
-</option>
-
-<option value="school">
-School infrastructure
-</option>
-
-<option value="community">
-Community building repair
-</option>
-
-<option value="other">
-Other infrastructure issue
-</option>
-
-</select>
-
-
-<input
-type="number"
-id="problemQuantity"
-min="1"
-placeholder="Quantity / Units"
->
-
-
-<button onclick="estimateProblem()">
-💰 Estimate Amount
 </button>
 
+<div id="locationResult"
+     class="result">
+
+Click the button to verify location.
+
+</div>
 
 </div>
 
 
-<div id="estimateResult">
+
+<!-- FIELD OFFICER -->
+
+<div class="card">
+
+<h2>👤 Field Officer Entry</h2>
+
+<input
+    id="officerName"
+    placeholder="Field officer name">
+
+<textarea
+    id="observation"
+    rows="4"
+    placeholder="Enter site observation..."></textarea>
+
+<button onclick="submitObservation()">
+
+Submit Field Observation
+
+</button>
+
+<div id="entryResult"
+     class="result"
+     style="display:none">
 
 </div>
 
-</section>
+</div>
 
 
-</main>
+
+<!-- PROBLEM ESTIMATION -->
+
+<div class="card">
+
+<h2>💰 AI Problem Cost Estimator</h2>
+
+<p>
+Enter an infrastructure problem and the AI
+will provide a preliminary estimated amount.
+</p>
+
+<input
+    id="problem"
+    placeholder="Example: road damage near school">
+
+<button onclick="estimateProblem()">
+
+💰 Estimate Amount
+
+</button>
+
+<div id="estimateResult"
+     class="result"
+     style="display:none">
+
+</div>
+
+</div>
+
+
+
+<!-- PHOTO VERIFICATION -->
+
+<div class="card">
+
+<h2>📷 AI Construction Photo Verification</h2>
+
+<p>
+Upload a construction-site photograph and
+compare it with the expected construction stage.
+</p>
+
+<input
+    type="number"
+    id="constructionDay"
+    placeholder="Construction day"
+    min="0">
+
+<input
+    type="file"
+    id="photo"
+    accept="image/*">
+
+<button onclick="analyzePhoto()">
+
+🔍 Analyze Construction
+
+</button>
+
+<div id="photoResult"
+     class="result"
+     style="display:none">
+
+</div>
+
+</div>
+
+
+
+<!-- WORKFLOW -->
+
+<div class="card">
+
+<h2>🔄 AI Construction Assistant Workflow</h2>
+
+<p>
+How the system processes a project from
+registration to action.
+</p>
+
+<div class="workflow">
+
+<div class="workflow-step">
+
+<div class="step-number">1</div>
+
+<div>
+<b>Project Registration</b>
+<br>
+Project and sanctioned amount are recorded.
+</div>
+
+</div>
+
+
+<div class="workflow-step">
+
+<div class="step-number">2</div>
+
+<div>
+<b>Location Verification</b>
+<br>
+Registered and detected locations are compared.
+</div>
+
+</div>
+
+
+<div class="workflow-step">
+
+<div class="step-number">3</div>
+
+<div>
+<b>Progress Monitoring</b>
+<br>
+Actual progress is compared with expected progress.
+</div>
+
+</div>
+
+
+<div class="workflow-step">
+
+<div class="step-number">4</div>
+
+<div>
+<b>AI Risk Detection</b>
+<br>
+Delay, progress gap and cost variation are analyzed.
+</div>
+
+</div>
+
+
+<div class="workflow-step">
+
+<div class="step-number">5</div>
+
+<div>
+<b>Construction Photo Verification</b>
+<br>
+Site evidence is compared with the expected stage.
+</div>
+
+</div>
+
+
+<div class="workflow-step">
+
+<div class="step-number">6</div>
+
+<div>
+<b>Problem Reporting</b>
+<br>
+Field officers can submit observations.
+</div>
+
+</div>
+
+
+<div class="workflow-step">
+
+<div class="step-number">7</div>
+
+<div>
+<b>AI Cost Estimation</b>
+<br>
+A preliminary repair estimate is generated.
+</div>
+
+</div>
+
+
+<div class="workflow-step">
+
+<div class="step-number">8</div>
+
+<div>
+<b>Recommended Action</b>
+<br>
+The system suggests the next verification step.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<p>
+⚠️ <b>Prototype note:</b>
+AI-assisted outputs are intended for monitoring
+and decision support. Final physical verification
+should be performed by an authorized field officer
+or engineer.
+</p>
+
+</div>
+
+
+</div>
+
 
 
 <script>
 
-/* =========================================
-   API
-========================================= */
-
-const API = "http://127.0.0.1:8000";
-
-let projects = [];
+const API =
+    "http://127.0.0.1:8000";
 
 
-/* =========================================
-   LOAD DASHBOARD
-========================================= */
+let selectedProject = null;
+
+
+
+// --------------------------------------------------
+// LOAD DASHBOARD
+// --------------------------------------------------
 
 async function loadDashboard() {
 
     try {
 
         const response =
-            await fetch(API + "/anomalies");
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Backend returned an error"
-            );
-
-        }
+            await fetch(API + "/summary");
 
         const data =
             await response.json();
 
-        if (!Array.isArray(data)) {
+        document.getElementById(
+            "totalProjects"
+        ).innerText =
+            data.total_projects;
 
-            throw new Error(
-                "Invalid data received"
-            );
+        document.getElementById(
+            "criticalProjects"
+        ).innerText =
+            data.critical_projects;
 
-        }
+        document.getElementById(
+            "highProjects"
+        ).innerText =
+            data.high_risk_projects;
 
-        projects = data;
-
-        updateDashboard();
-
-        populateProjects();
-
-        populateVisualProjects();
+        document.getElementById(
+            "normalProjects"
+        ).innerText =
+            data.normal_projects;
 
     }
 
     catch(error) {
 
-        console.error(error);
-
-        document.getElementById("result").innerHTML = `
-
-            <div class="error">
-
-                <strong>
-                    Backend connection failed.
-                </strong>
-
-                <p>
-                    Start FastAPI using:
-                </p>
-
-                <p>
-                    <strong>
-                    uvicorn main:app --reload
-                    </strong>
-                </p>
-
-                <p>
-                    API:
-                    http://127.0.0.1:8000
-                </p>
-
-            </div>
-
-        `;
+        console.log(
+            "Backend unavailable",
+            error
+        );
 
     }
 
 }
 
 
-/* =========================================
-   RISK CALCULATION
-========================================= */
 
-function getRisk(project) {
+// --------------------------------------------------
+// LOAD PROJECTS
+// --------------------------------------------------
 
-    const backendRisk =
-        project.risk_level;
+async function loadProjects() {
 
-    if(backendRisk) {
+    try {
 
-        const value =
-            backendRisk.toLowerCase();
+        const response =
+            await fetch(API + "/projects");
 
-        if(value === "critical")
-            return "Critical";
+        const projects =
+            await response.json();
 
-        if(value === "high")
-            return "High";
+        const select =
+            document.getElementById(
+                "projectSelect"
+            );
 
-        if(value === "medium")
-            return "High";
+        projects.forEach(project => {
 
-        return "Normal";
-
-    }
-
-
-    const gap =
-        Math.abs(
-            Number(project.progress_gap || 0)
-        );
-
-    const delay =
-        Number(project.delay_days || 0);
-
-    const cost =
-        Math.abs(
-            Number(project.cost_vs_peer_percent || 0)
-        );
-
-
-    if(
-        gap >= 40 ||
-        delay >= 45 ||
-        cost >= 30
-    ) {
-
-        return "Critical";
-
-    }
-
-
-    if(
-        gap >= 25 ||
-        delay >= 20 ||
-        cost >= 20
-    ) {
-
-        return "High";
-
-    }
-
-
-    return "Normal";
-
-}
-
-
-/* =========================================
-   UPDATE DASHBOARD
-========================================= */
-
-function updateDashboard() {
-
-    let critical = 0;
-
-    let high = 0;
-
-    let normal = 0;
-
-
-    projects.forEach(project => {
-
-        const risk =
-            getRisk(project);
-
-        if(risk === "Critical")
-            critical++;
-
-        else if(risk === "High")
-            high++;
-
-        else
-            normal++;
-
-    });
-
-
-    const total =
-        projects.length;
-
-
-    document.getElementById(
-        "totalProjects"
-    ).textContent = total;
-
-
-    document.getElementById(
-        "criticalProjects"
-    ).textContent = critical;
-
-
-    document.getElementById(
-        "highProjects"
-    ).textContent = high;
-
-
-    document.getElementById(
-        "normalProjects"
-    ).textContent = normal;
-
-
-    document.getElementById(
-        "criticalCount"
-    ).textContent = critical;
-
-
-    document.getElementById(
-        "highCount"
-    ).textContent = high;
-
-
-    document.getElementById(
-        "normalCount"
-    ).textContent = normal;
-
-
-    document.getElementById(
-        "criticalBar"
-    ).style.width =
-        total
-        ? (critical / total * 100) + "%"
-        : "0%";
-
-
-    document.getElementById(
-        "highBar"
-    ).style.width =
-        total
-        ? (high / total * 100) + "%"
-        : "0%";
-
-
-    document.getElementById(
-        "normalBar"
-    ).style.width =
-        total
-        ? (normal / total * 100) + "%"
-        : "0%";
-
-
-    createProgressBars();
-
-}
-
-
-/* =========================================
-   PROJECT DROPDOWN
-========================================= */
-
-function populateProjects() {
-
-    const select =
-        document.getElementById(
-            "projectSelect"
-        );
-
-
-    select.innerHTML = `
-
-        <option value="">
-            Choose a project for AI investigation...
-        </option>
-
-    `;
-
-
-    projects.forEach(project => {
-
-        const option =
-            document.createElement("option");
-
-
-        option.value =
-            project.project_id;
-
-
-        option.textContent =
-            `${project.project_id} — ${project.district || "Unknown"} — ${project.project_type || "Project"}`;
-
-
-        select.appendChild(option);
-
-    });
-
-}
-
-
-/* =========================================
-   VISUAL PROJECT DROPDOWN
-========================================= */
-
-function populateVisualProjects() {
-
-    const select =
-        document.getElementById(
-            "visualProject"
-        );
-
-
-    select.innerHTML = `
-
-        <option value="">
-            Select project...
-        </option>
-
-    `;
-
-
-    projects.forEach(project => {
-
-        const option =
-            document.createElement("option");
-
-
-        option.value =
-            project.project_id;
-
-
-        option.textContent =
-            `${project.project_id} — ${project.district || "Unknown"}`;
-
-
-        select.appendChild(option);
-
-    });
-
-}
-
-
-/* =========================================
-   PROGRESS BARS
-========================================= */
-
-function createProgressBars() {
-
-    const container =
-        document.getElementById("bars");
-
-
-    container.innerHTML = "";
-
-
-    projects
-        .slice(0,10)
-        .forEach(project => {
-
-            const financial =
-                Number(
-                    project.financial_progress || 0
+            const option =
+                document.createElement(
+                    "option"
                 );
 
+            option.value =
+                project.project_id;
 
-            const physical =
-                Number(
-                    project.physical_progress || 0
-                );
+            option.textContent =
+                project.project_id +
+                " — " +
+                project.name;
 
-
-            const group =
-                document.createElement("div");
-
-
-            group.className =
-                "bar-group";
-
-
-            group.innerHTML = `
-
-                <div
-                    class="bar financial"
-                    title="${project.project_id} Financial ${financial}%"
-                    style="height:${Math.min(financial,100)}%"
-                ></div>
-
-                <div
-                    class="bar physical"
-                    title="${project.project_id} Physical ${physical}%"
-                    style="height:${Math.min(physical,100)}%"
-                ></div>
-
-            `;
-
-
-            container.appendChild(group);
+            select.appendChild(
+                option
+            );
 
         });
 
+    }
+
+    catch(error) {
+
+        console.log(
+            "Unable to load projects"
+        );
+
+    }
+
 }
 
 
-/* =========================================
-   AI PROJECT INVESTIGATION
-========================================= */
 
-function investigateProject(id) {
+// --------------------------------------------------
+// PROJECT SELECTION
+// --------------------------------------------------
 
-    if(!id) {
+document.getElementById(
+    "projectSelect"
+).addEventListener(
+    "change",
+    async function() {
 
-        document.getElementById(
-            "result"
-        ).innerHTML = `
+        const id =
+            this.value;
 
-            <div class="loading">
+        if (!id) {
 
-                Select a project above to begin AI investigation.
+            return;
 
-            </div>
+        }
 
-        `;
+        try {
 
-        return;
+            const response =
+                await fetch(
+                    API +
+                    "/projects/" +
+                    id
+                );
 
-    }
+            selectedProject =
+                await response.json();
 
-
-    const project =
-        projects.find(
-            p =>
-            String(p.project_id)
-            === String(id)
-        );
-
-
-    if(!project)
-        return;
-
-
-    const sanctioned =
-        Number(
-            project.sanctioned_amount || 0
-        );
-
-
-    const paid =
-        Number(
-            project.paid_amount || 0
-        );
-
-
-    let financial =
-        Number(
-            project.financial_progress || 0
-        );
-
-
-    if(
-        !project.financial_progress &&
-        sanctioned > 0
-    ) {
-
-        financial =
-            paid / sanctioned * 100;
-
-    }
-
-
-    const physical =
-        Number(
-            project.physical_progress || 0
-        );
-
-
-    let gap =
-        Number(
-            project.progress_gap
-        );
-
-
-    if(Number.isNaN(gap)) {
-
-        gap =
-            financial - physical;
-
-    }
-
-
-    gap =
-        Math.abs(gap);
-
-
-    const expected =
-        Number(
-            project.expected_completion_days || 0
-        );
-
-
-    const actual =
-        Number(
-            project.actual_days || 0
-        );
-
-
-    let delay =
-        Number(
-            project.delay_days
-        );
-
-
-    if(Number.isNaN(delay)) {
-
-        delay =
-            Math.max(
-                0,
-                actual - expected
+            showProject(
+                selectedProject
             );
 
-    }
+            loadConstructionStages(
+                id
+            );
 
+        }
 
-    const cost =
-        Number(
-            project.cost_vs_peer_percent || 0
-        );
+        catch(error) {
 
+            document.getElementById(
+                "projectDetails"
+            ).innerHTML =
+                `
+                <div class="alert danger"
+                     style="display:block">
+                    Backend connection failed.
+                </div>
+                `;
 
-    const risk =
-        getRisk(project);
-
-
-    let finding = "";
-
-    let action = "";
-
-
-    if(risk === "Critical") {
-
-        finding =
-            `Critical risk detected. The project has a ${gap.toFixed(0)}% progress gap, ${delay.toFixed(0)} days delay and ${cost.toFixed(0)}% cost variation.`;
-
-
-        action =
-            "Conduct an immediate administrative review, verify expenditure and physical progress records, and obtain updated implementation documents.";
+        }
 
     }
-
-    else if(risk === "High") {
-
-        finding =
-            `The project shows elevated risk with a ${gap.toFixed(0)}% progress gap, ${delay.toFixed(0)} days delay or ${cost.toFixed(0)}% cost variation.`;
+);
 
 
-        action =
-            "Schedule a review and request updated progress documentation from the implementing agency.";
 
-    }
+// --------------------------------------------------
+// SHOW PROJECT
+// --------------------------------------------------
 
-    else {
-
-        finding =
-            "Financial and physical progress are broadly aligned and no major risk indicator has been detected.";
-
-
-        action =
-            "Continue routine monitoring and periodic progress verification.";
-
-    }
-
+function showProject(project) {
 
     let riskClass =
-        "risk-normal";
+        "green";
 
-
-    if(risk === "Critical")
-        riskClass = "risk-critical";
-
-    else if(risk === "High")
-        riskClass = "risk-high";
-
-
-    document.getElementById(
-        "result"
-    ).innerHTML = `
-
-        <div>
-
-            <div class="project-header">
-
-                <div>
-
-                    <h2>
-                        ${project.project_id}
-                    </h2>
-
-                    <p>
-                        ${project.district || "Unknown"}
-                        •
-                        ${project.project_type || "Project"}
-                    </p>
-
-                </div>
-
-                <span class="risk ${riskClass}">
-                    ${risk} Risk
-                </span>
-
-            </div>
-
-
-            <div class="metrics">
-
-                <div class="metric">
-
-                    <span>
-                        Financial Progress
-                    </span>
-
-                    <strong>
-                        ${financial.toFixed(0)}%
-                    </strong>
-
-                </div>
-
-
-                <div class="metric">
-
-                    <span>
-                        Physical Progress
-                    </span>
-
-                    <strong>
-                        ${physical.toFixed(0)}%
-                    </strong>
-
-                </div>
-
-
-                <div class="metric">
-
-                    <span>
-                        Progress Gap
-                    </span>
-
-                    <strong>
-                        ${gap.toFixed(0)}%
-                    </strong>
-
-                </div>
-
-
-                <div class="metric">
-
-                    <span>
-                        Delay
-                    </span>
-
-                    <strong>
-                        ${delay.toFixed(0)} days
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <div class="finding">
-
-                <strong>
-                    🤖 AI Finding
-                </strong>
-
-                <p>
-                    ${finding}
-                </p>
-
-            </div>
-
-
-            <div class="action">
-
-                <strong>
-                    🎯 Recommended Action
-                </strong>
-
-                <p>
-                    ${action}
-                </p>
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================
-   PHOTO PREVIEW
-========================================= */
-
-function previewPhoto() {
-
-    const input =
-        document.getElementById(
-            "constructionPhoto"
-        );
-
-
-    const preview =
-        document.getElementById(
-            "photoPreview"
-        );
-
-
-    const image =
-        document.getElementById(
-            "previewImage"
-        );
-
-
-    if(
-        input.files &&
-        input.files[0]
+    if (
+        project.risk_level ===
+        "Critical"
     ) {
 
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function(event) {
-
-                image.src =
-                    event.target.result;
-
-
-                preview.style.display =
-                    "block";
-
-            };
-
-
-        reader.readAsDataURL(
-            input.files[0]
-        );
+        riskClass =
+            "red";
 
     }
 
-}
+    else if (
+        project.risk_level ===
+        "High"
+    ) {
 
-
-/* =========================================
-   CONSTRUCTION ANALYSIS
-========================================= */
-
-function analyzeConstruction() {
-
-    const projectId =
-        document.getElementById(
-            "visualProject"
-        ).value;
-
-
-    const day =
-        Number(
-            document.getElementById(
-                "constructionDay"
-            ).value
-        );
-
-
-    const photo =
-        document.getElementById(
-            "constructionPhoto"
-        ).files[0];
-
-
-    const result =
-        document.getElementById(
-            "visualResult"
-        );
-
-
-    if(!projectId) {
-
-        result.innerHTML = `
-
-            <div class="error">
-                Please select a project.
-            </div>
-
-        `;
-
-        return;
+        riskClass =
+            "orange";
 
     }
 
+    document.getElementById(
+        "projectDetails"
+    ).innerHTML = `
 
-    if(!day || day < 1) {
+    <div class="project-info">
 
-        result.innerHTML = `
+        <div class="info-box">
 
-            <div class="error">
-                Please enter the construction day.
-            </div>
+            <b>Project</b>
 
-        `;
+            <br>
 
-        return;
-
-    }
-
-
-    if(!photo) {
-
-        result.innerHTML = `
-
-            <div class="error">
-                Please upload a construction photo.
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    const project =
-        projects.find(
-            p =>
-            String(p.project_id)
-            === String(projectId)
-        );
-
-
-    if(!project)
-        return;
-
-
-    const physical =
-        Number(
-            project.physical_progress || 0
-        );
-
-
-    let expectedStage =
-        "Site preparation";
-
-
-    if(day <= 2) {
-
-        expectedStage =
-            "Site preparation / initial work";
-
-    }
-
-    else if(day <= 5) {
-
-        expectedStage =
-            "Excavation / foundation preparation";
-
-    }
-
-    else if(day <= 10) {
-
-        expectedStage =
-            "Foundation / structural work";
-
-    }
-
-    else {
-
-        expectedStage =
-            "Progressive structural / finishing work";
-
-    }
-
-
-    let status =
-        "ON TRACK";
-
-
-    let statusClass =
-        "status-track";
-
-
-    let confidence =
-        82;
-
-
-    if(physical < 30) {
-
-        status =
-            "POTENTIAL DELAY";
-
-        statusClass =
-            "status-delay";
-
-        confidence =
-            78;
-
-    }
-
-    else if(physical > 80) {
-
-        status =
-            "AHEAD";
-
-        statusClass =
-            "status-ahead";
-
-        confidence =
-            84;
-
-    }
-
-
-    result.innerHTML = `
-
-        <div class="visual-card">
-
-            <span class="visual-status ${statusClass}">
-                ${status}
-            </span>
-
-
-            <h3>
-                AI Construction Assessment
-            </h3>
-
-
-            <p>
-
-                Project <strong>${projectId}</strong>
-                was evaluated for
-                <strong>Day ${day}</strong>
-                using the uploaded field photograph
-                together with the project progress record.
-
-            </p>
-
-
-            <div class="visual-grid">
-
-
-                <div class="visual-metric">
-
-                    <span>
-                        Expected Stage
-                    </span>
-
-                    <strong>
-                        ${expectedStage}
-                    </strong>
-
-                </div>
-
-
-                <div class="visual-metric">
-
-                    <span>
-                        Reported Physical Progress
-                    </span>
-
-                    <strong>
-                        ${physical.toFixed(0)}%
-                    </strong>
-
-                </div>
-
-
-                <div class="visual-metric">
-
-                    <span>
-                        AI Confidence
-                    </span>
-
-                    <strong>
-                        ${confidence}%
-                    </strong>
-
-                </div>
-
-
-            </div>
-
-
-            <div class="finding">
-
-                <strong>
-                    📷 Visual Finding
-                </strong>
-
-                <p>
-
-                    The uploaded image has been accepted
-                    as field evidence for the prototype
-                    verification workflow.
-
-                    The expected construction stage for
-                    Day ${day} is
-                    <strong>${expectedStage}</strong>.
-
-                    The system currently indicates
-                    <strong>${status.toLowerCase()}</strong>
-                    based on the available project
-                    progress information.
-
-                </p>
-
-            </div>
-
-
-            <div class="action">
-
-                <strong>
-                    🎯 Recommended Action
-                </strong>
-
-                <p>
-
-                    Compare the uploaded site evidence
-                    with the approved project schedule.
-                    If the observed stage differs materially
-                    from the expected stage, request a
-                    field verification and updated progress
-                    record.
-
-                </p>
-
-            </div>
+            ${project.name}
 
         </div>
+
+
+        <div class="info-box">
+
+            <b>Location</b>
+
+            <br>
+
+            ${project.location}
+
+        </div>
+
+
+        <div class="info-box">
+
+            <b>Sanctioned Amount</b>
+
+            <br>
+
+            ₹${project.sanctioned_amount.toLocaleString()}
+
+        </div>
+
+
+        <div class="info-box">
+
+            <b>Current Progress</b>
+
+            <br>
+
+            ${project.progress}%
+
+        </div>
+
+
+        <div class="info-box">
+
+            <b>Expected Progress</b>
+
+            <br>
+
+            ${project.expected_progress}%
+
+        </div>
+
+
+        <div class="info-box">
+
+            <b>Risk</b>
+
+            <br>
+
+            <span class="${riskClass}">
+                <b>
+                    ${project.risk_level}
+                </b>
+            </span>
+
+            <br>
+
+            Risk Score:
+            ${project.risk_score}
+
+        </div>
+
+    </div>
 
     `;
 
 }
 
 
-/* =========================================
-   LOCATION
-========================================= */
 
-function getLocation() {
+// --------------------------------------------------
+// CONSTRUCTION STAGES
+// --------------------------------------------------
 
-    const result =
+async function loadConstructionStages(
+    projectId
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                API +
+                "/construction-stages/" +
+                projectId
+            );
+
+        const data =
+            await response.json();
+
+        const container =
+            document.getElementById(
+                "constructionStages"
+            );
+
+        container.innerHTML = "";
+
+        data.stages.forEach(
+            stage => {
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+                div.className =
+                    "stage " +
+                    (
+                        stage.status ===
+                        "completed"
+                        ?
+                        "completed"
+                        :
+                        "locked"
+                    );
+
+                div.innerHTML = `
+
+                    <div class="stage-icon">
+
+                        ${
+                            stage.status ===
+                            "completed"
+                            ?
+                            "✓"
+                            :
+                            "🔒"
+                        }
+
+                    </div>
+
+                    ${stage.name}
+
+                    <br>
+
+                    <small>
+
+                        ${stage.required_progress}%
+
+                    </small>
+
+                `;
+
+                container.appendChild(
+                    div
+                );
+
+            }
+        );
+
+    }
+
+    catch(error) {
+
+        console.log(error);
+
+    }
+
+}
+
+
+
+// --------------------------------------------------
+// LOCATION
+// --------------------------------------------------
+
+async function checkLocation() {
+
+    const box =
         document.getElementById(
             "locationResult"
         );
 
+    if (!selectedProject) {
 
-    if(!navigator.geolocation) {
-
-        result.innerHTML =
-            "Geolocation is not supported by this browser.";
+        box.innerHTML =
+            "Please select a project first.";
 
         return;
 
     }
 
+    try {
 
-    result.innerHTML =
-        "Getting current location...";
+        const response =
+            await fetch(
+                API +
+                "/location/" +
+                selectedProject.project_id
+            );
 
+        const data =
+            await response.json();
 
-    navigator.geolocation.getCurrentPosition(
+        if (
+            data.status ===
+            "Location verified"
+        ) {
 
-        function(position) {
+            box.className =
+                "result success";
 
-            const latitude =
-                position.coords.latitude;
+            box.innerHTML = `
 
-
-            const longitude =
-                position.coords.longitude;
-
-
-            document.getElementById(
-                "latitude"
-            ).value =
-                latitude.toFixed(6);
-
-
-            document.getElementById(
-                "longitude"
-            ).value =
-                longitude.toFixed(6);
-
-
-            result.innerHTML = `
-
-                📍 Location captured successfully.
+                <b>🟢 Location Verified</b>
 
                 <br><br>
 
-                Latitude:
-                <strong>${latitude.toFixed(6)}</strong>
+                Registered:
+                ${data.registered_location.latitude.toFixed(5)},
+                ${data.registered_location.longitude.toFixed(5)}
 
                 <br>
 
-                Longitude:
-                <strong>${longitude.toFixed(6)}</strong>
+                Detected:
+                ${data.detected_location.latitude.toFixed(5)},
+                ${data.detected_location.longitude.toFixed(5)}
 
             `;
 
-        },
+        }
 
+        else {
 
-        function() {
+            box.className =
+                "result warning";
 
-            result.innerHTML =
+            box.innerHTML = `
 
-                "Unable to access location. Please allow location permission.";
+                <b>⚠️ Small Location Change Detected</b>
+
+                <br><br>
+
+                Registered location:
+                ${data.registered_location.latitude.toFixed(5)},
+                ${data.registered_location.longitude.toFixed(5)}
+
+                <br>
+
+                Latest detected location:
+                ${data.detected_location.latitude.toFixed(5)},
+                ${data.detected_location.longitude.toFixed(5)}
+
+                <br><br>
+
+                <b>Recommended action:</b>
+                Verify the latest site evidence.
+
+            `;
 
         }
 
-    );
+    }
+
+    catch(error) {
+
+        box.className =
+            "result danger";
+
+        box.innerHTML =
+            "Unable to verify location.";
+
+    }
 
 }
 
 
-/* =========================================
-   OFFICER ENTRY
-========================================= */
 
-function saveOfficerEntry() {
+// --------------------------------------------------
+// FIELD ENTRY
+// --------------------------------------------------
+
+async function submitObservation() {
 
     const name =
         document.getElementById(
             "officerName"
         ).value;
 
-
-    const role =
+    const observation =
         document.getElementById(
-            "officerRole"
+            "observation"
         ).value;
 
+    if (!selectedProject) {
 
-    const date =
-        document.getElementById(
-            "visitDate"
-        ).value;
-
-
-    const result =
-        document.getElementById(
-            "entryResult"
+        alert(
+            "Select a project first."
         );
-
-
-    if(!name || !role || !date) {
-
-        result.innerHTML =
-            "Please complete all officer details.";
 
         return;
 
     }
 
+    if (!name || !observation) {
 
-    result.innerHTML = `
+        alert(
+            "Enter officer name and observation."
+        );
 
-        ✅ Field entry recorded.
+        return;
 
-        <br><br>
+    }
 
-        Officer:
-        <strong>${name}</strong>
+    const url =
+        API +
+        "/field-entry?" +
+        new URLSearchParams({
 
-        <br>
+            project_id:
+                selectedProject.project_id,
 
-        Role:
-        <strong>${role}</strong>
+            officer_name:
+                name,
 
-        <br>
+            observation:
+                observation
 
-        Visit Date:
-        <strong>${date}</strong>
+        });
 
-    `;
+    try {
+
+        const response =
+            await fetch(
+                url,
+                {
+                    method: "POST"
+                }
+            );
+
+        const data =
+            await response.json();
+
+        const box =
+            document.getElementById(
+                "entryResult"
+            );
+
+        box.style.display =
+            "block";
+
+        box.className =
+            "result success";
+
+        box.innerHTML = `
+
+            🟢 <b>Observation recorded successfully.</b>
+
+            <br><br>
+
+            Officer:
+            ${data.officer}
+
+            <br>
+
+            Observation:
+            ${data.observation}
+
+        `;
+
+    }
+
+    catch(error) {
+
+        alert(
+            "Backend connection failed."
+        );
+
+    }
 
 }
 
 
-/* =========================================
-   PROBLEM ESTIMATOR
-========================================= */
 
-function estimateProblem() {
+// --------------------------------------------------
+// COST ESTIMATION
+// --------------------------------------------------
+
+async function estimateProblem() {
 
     const problem =
         document.getElementById(
-            "problemType"
+            "problem"
         ).value;
 
+    if (!problem) {
 
-    const quantity =
-        Number(
+        alert(
+            "Enter a problem first."
+        );
+
+        return;
+
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                API +
+                "/estimate?" +
+                new URLSearchParams({
+                    problem: problem
+                })
+            );
+
+        const data =
+            await response.json();
+
+        const box =
             document.getElementById(
-                "problemQuantity"
-            ).value
-        );
+                "estimateResult"
+            );
 
+        box.style.display =
+            "block";
 
-    const result =
-        document.getElementById(
-            "estimateResult"
-        );
+        box.innerHTML = `
 
+            <b>AI Problem Analysis</b>
 
-    if(!problem) {
+            <br><br>
 
-        result.innerHTML = `
+            Category:
+            ${data.category}
 
-            <div class="error">
-                Please select the infrastructure problem.
+            <br><br>
+
+            Estimated amount:
+
+            <div class="amount">
+
+                ₹${data.estimated_amount.toLocaleString()}
+
             </div>
+
+            <br>
+
+            ⚠️ ${data.message}
 
         `;
 
-        return;
-
     }
 
+    catch(error) {
 
-    if(!quantity || quantity < 1) {
-
-        result.innerHTML = `
-
-            <div class="error">
-                Please enter a valid quantity.
-            </div>
-
-        `;
-
-        return;
+        alert(
+            "Unable to calculate estimate."
+        );
 
     }
-
-
-    const rates = {
-
-        road: 500000,
-
-        drainage: 300000,
-
-        water: 250000,
-
-        streetlight: 75000,
-
-        school: 400000,
-
-        community: 500000,
-
-        other: 200000
-
-    };
-
-
-    const names = {
-
-        road: "Road damage / repair",
-
-        drainage: "Drainage problem",
-
-        water: "Water supply problem",
-
-        streetlight: "Streetlight problem",
-
-        school: "School infrastructure",
-
-        community: "Community building repair",
-
-        other: "Other infrastructure issue"
-
-    };
-
-
-    const amount =
-        rates[problem] * quantity;
-
-
-    result.innerHTML = `
-
-        <div class="estimate-result">
-
-            <strong>
-                💰 AI-Assisted Intervention Estimate
-            </strong>
-
-            <p>
-
-                Problem:
-                <strong>
-                    ${names[problem]}
-                </strong>
-
-                <br>
-
-                Quantity:
-                <strong>
-                    ${quantity}
-                </strong>
-
-            </p>
-
-
-            <div class="estimate-amount">
-
-                ₹${amount.toLocaleString("en-IN")}
-
-            </div>
-
-
-            <p>
-
-                Indicative prototype estimate based on
-                the selected problem type and quantity.
-
-            </p>
-
-
-            <small>
-
-                ⚠️ Actual cost should be confirmed using
-                approved schedule-of-rates, site measurements
-                and procurement estimates.
-
-            </small>
-
-        </div>
-
-    `;
 
 }
 
 
-/* =========================================
-   START APPLICATION
-========================================= */
+
+// --------------------------------------------------
+// PHOTO ANALYSIS
+// --------------------------------------------------
+
+async function analyzePhoto() {
+
+    if (!selectedProject) {
+
+        alert(
+            "Select a project first."
+        );
+
+        return;
+
+    }
+
+    const day =
+        document.getElementById(
+            "constructionDay"
+        ).value;
+
+    const file =
+        document.getElementById(
+            "photo"
+        ).files[0];
+
+    if (!day || !file) {
+
+        alert(
+            "Enter construction day and choose a photo."
+        );
+
+        return;
+
+    }
+
+    const formData =
+        new FormData();
+
+    formData.append(
+        "file",
+        file
+    );
+
+    try {
+
+        const response =
+            await fetch(
+
+                API +
+                "/analyze-photo?" +
+
+                new URLSearchParams({
+
+                    project_id:
+                        selectedProject.project_id,
+
+                    construction_day:
+                        day
+
+                }),
+
+                {
+
+                    method:
+                        "POST",
+
+                    body:
+                        formData
+
+                }
+
+            );
+
+        const data =
+            await response.json();
+
+        const box =
+            document.getElementById(
+                "photoResult"
+            );
+
+        box.style.display =
+            "block";
+
+        box.className =
+            "result success";
+
+        box.innerHTML = `
+
+            🟢 <b>AI Construction Verification</b>
+
+            <br><br>
+
+            <b>Observed stage:</b>
+            ${data.observed_stage}
+
+            <br>
+
+            <b>Expected stage:</b>
+            ${data.expected_stage}
+
+            <br>
+
+            <b>Confidence:</b>
+            ${data.confidence}%
+
+            <br><br>
+
+            <b>Visual finding:</b>
+
+            <br>
+
+            ${data.visual_finding}
+
+            <br><br>
+
+            <b>Recommended action:</b>
+
+            <br>
+
+            ${data.recommended_action}
+
+        `;
+
+    }
+
+    catch(error) {
+
+        alert(
+            "Photo analysis failed."
+        );
+
+    }
+
+}
+
+
+
+// --------------------------------------------------
+// START
+// --------------------------------------------------
 
 loadDashboard();
 
+loadProjects();
+
 </script>
+
 
 </body>
 
