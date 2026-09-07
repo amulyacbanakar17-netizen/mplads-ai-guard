@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MPLADS AI Guard</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f6fa;
+    color: #123b70;
+}
+
+header {
+    background: linear-gradient(135deg, #174d87, #2d70b7);
+    color: white;
+    padding: 28px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+header p {
+    margin: 8px 0 0;
+    font-size: 17px;
+    opacity: .85;
+}
+
+.status {
+    background: rgba(255,255,255,.15);
+    padding: 14px 22px;
+    border-radius: 30px;
+}
+
+.dot {
+    color: #2ee59d;
+    font-size: 20px;
+}
+
+main {
+    width: 90%;
+    max-width: 1500px;
+    margin: 40px auto;
+}
+
+.title {
+    margin-bottom: 25px;
+}
+
+.title h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.title p {
+    color: #607da0;
+    font-size: 18px;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+button,
+select,
+input {
+    height: 55px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+button {
+    border: none;
+    background: #246db3;
+    color: white;
+    padding: 0 22px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #185b9b;
+}
+
+select,
+input {
+    border: 1px solid #ccd8e7;
+    background: white;
+    padding: 0 15px;
+}
+
+select {
+    min-width: 420px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 22px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: white;
+    padding: 27px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(20,55,90,.08);
+}
+
+.card h3 {
+    margin: 0;
+    color: #607da0;
+    font-size: 15px;
+}
+
+.number {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 15px 0 8px;
+}
+
+.blue {
+    color: #2672ca;
+}
+
+.red {
+    color: #e84951;
+}
+
+.orange {
+    color: #e9970d;
+}
+
+.green {
+    color: #159b72;
+}
+
+.card p {
+    color: #607da0;
+    margin: 0;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.panel,
+.section {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(20,55,90,.08);
+}
+
+.panel h2,
+.section h2 {
+    margin-top: 0;
+}
+
+.bars {
+    height: 280px;
+    display: flex;
+    align-items: end;
+    gap: 12px;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.bar-group {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    align-items: end;
+    gap: 4px;
+}
+
+.bar {
+    flex: 1;
+    border-radius: 5px 5px 0 0;
+}
+
+.financial {
+    background: #4b9ed8;
+}
+
+.physical {
+    background: #ef829d;
+}
+
+.legend {
+    text-align: center;
+    margin-top: 15px;
+    color: #607da0;
+}
+
+.risk-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-top: 35px;
+}
+
+.risk-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.risk-label {
+    width: 75px;
+}
+
+.risk-bar {
+    flex: 1;
+    height: 18px;
+    background: #edf1f5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.risk-fill {
+    height: 100%;
+}
+
+.critical-fill {
+    background: #e84951;
+}
+
+.high-fill {
+    background: #e9970d;
+}
+
+.normal-fill {
+    background: #20a678;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-header p {
+    color: #607da0;
+}
+
+.risk {
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.risk-critical {
+    background: #ffe1e1;
+    color: #d8323b;
+}
+
+.risk-high {
+    background: #fff0d5;
+    color: #bd7100;
+}
+
+.risk-normal {
+    background: #dff7ee;
+    color: #07855d;
+}
+
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.metric {
+    border: 1px solid #dce4ed;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.metric span {
+    display: block;
+    color: #607da0;
+    margin-bottom: 10px;
+}
+
+.metric strong {
+    font-size: 28px;
+}
+
+.finding {
+    background: #fff7e6;
+    border-left: 6px solid #e9970d;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.action {
+    background: #eaf3ff;
+    border-left: 6px solid #2875c5;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.finding p,
+.action p {
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.loading {
+    color: #607da0;
+}
+
+.error {
+    background: #fff0f0;
+    border-left: 6px solid #e84951;
+    padding: 20px;
+    border-radius: 10px;
+    color: #c52727;
+}
+
+/* VISUAL VERIFICATION */
+
+.verification-intro {
+    color: #607da0;
+    line-height: 1.6;
+}
+
+.verification-form {
+    display: grid;
+    grid-template-columns: 1fr 160px 1.5fr 180px;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.verification-form input,
+.verification-form select {
+    width: 100%;
+}
+
+.photo-preview {
+    display: none;
+    margin-top: 25px;
+}
+
+.photo-preview img {
+    max-width: 420px;
+    max-height: 280px;
+    border-radius: 12px;
+    border: 1px solid #dce4ed;
+    object-fit: cover;
+}
+
+.visual-card {
+    margin-top: 25px;
+    border: 1px solid #dce4ed;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.visual-status {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.status-delay {
+    background: #fff0d5;
+    color: #bd7100;
+}
+
+.status-track {
+    background: #dff7ee;
+    color: #07855d;
+}
+
+.status-ahead {
+    background: #e5efff;
+    color: #246db3;
+}
+
+.visual-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.visual-metric {
+    background: #f7f9fc;
+    padding: 18px;
+    border-radius: 10px;
+}
+
+.visual-metric span {
+    display: block;
+    color: #607da0;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.visual-metric strong {
+    font-size: 20px;
+}
+
+.disclaimer {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #718096;
+    background: #f5f7fa;
+    padding: 14px;
+    border-radius: 8px;
+}
+
+@media(max-width:1000px) {
+
+    .cards {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .metrics {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .verification-form {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media(max-width:600px) {
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .visual-grid {
+        grid-template-columns: 1fr;
+    }
+
+    select {
+        min-width: 100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div>
+
+<h1>MPLADS AI GUARD</h1>
+
+<p>
+AI-Powered Monitoring & Anomaly Detection System
+</p>
+
+</div>
+
+<div class="status">
+
+<span class="dot">●</span>
+
+AI Monitoring Active
+
+</div>
+
+</header>
+
+
+<main>
+
+<div class="title">
+
+<h2>MPLADS Project Intelligence Dashboard</h2>
+
+<p>
+Monitor financial utilization, physical progress,
+delays, anomalies and construction evidence.
+</p>
+
+</div>
+
+
+<div class="controls">
+
+<button onclick="loadDashboard()">
+↻ Update Dashboard
+</button>
+
+<select
+id="projectSelect"
+onchange="investigateProject(this.value)"
+>
+
+<option value="">
+Choose a project for AI investigation...
+</option>
+
+</select>
+
+</div>
+
+
+<section class="cards">
+
+<div class="card">
+
+<h3>TOTAL PROJECTS</h3>
+
+<div
+class="number blue"
+id="totalProjects"
+>
+--
+</div>
+
+<p>Projects monitored by AI</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>CRITICAL PROJECTS</h3>
+
+<div
+class="number red"
+id="criticalProjects"
+>
+--
+</div>
+
+<p>Require immediate attention</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>HIGH RISK</h3>
+
+<div
+class="number orange"
+id="highProjects"
+>
+--
+</div>
+
+<p>Projects requiring review</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>NORMAL</h3>
+
+<div
+class="number green"
+id="normalProjects"
+>
+--
+</div>
+
+<p>No major anomaly detected</p>
+
+</div>
+
+</section>
+
+
+<section class="dashboard">
+
+<div class="panel">
+
+<h2>
+Financial vs Physical Progress
+</h2>
+
+<div
+class="bars"
+id="bars"
+></div>
+
+<div class="legend">
+
+<span>■ Financial Progress</span>
+
+&nbsp;&nbsp;
+
+<span>■ Physical Progress</span>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>
+AI Risk Distribution
+</h2>
+
+<div class="risk-list">
+
+
+<div class="risk-row">
+
+<div class="risk-label">
+Critical
+</div>
+
+<div class="risk-bar">
+
+<div
+id="criticalBar"
+class="risk-fill critical-fill"
+style="width:0%"
+></div>
+
+</div>
+
+<strong id="criticalCount">
+0
+</strong>
+
+</div>
+
+
+<div class="risk-row">
+
+<div class="risk-label">
+High
+</div>
+
+<div class="risk-bar">
+
+<div
+id="highBar"
+class="risk-fill high-fill"
+style="width:0%"
+></div>
+
+</div>
+
+<strong id="highCount">
+0
+</strong>
+
+</div>
+
+
+<div class="risk-row">
+
+<div class="risk-label">
+Normal
+</div>
+
+<div class="risk-bar">
+
+<div
+id="normalBar"
+class="risk-fill normal-fill"
+style="width:0%"
+></div>
+
+</div>
+
+<strong id="normalCount">
+0
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>
+🔎 AI Project Investigation
+</h2>
+
+<p>
+Select a project to understand detected risk
+indicators and recommended action.
+</p>
+
+<div id="result">
+
+<div class="loading">
+Select a project above to begin AI investigation.
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<h2>
+📷 AI Construction Progress Verification
+</h2>
+
+<p class="verification-intro">
+
+Upload a construction-site photograph and compare
+the evidence workflow against the approved project
+schedule and reported physical progress.
+
+This prototype is a field-review aid and does not
+replace certification by an authorized engineer.
+
+</p>
+
+
+<div class="verification-form">
+
+<select id="visualProject">
+
+<option value="">
+Select project...
+</option>
+
+</select>
+
+
+<input
+type="number"
+id="constructionDay"
+min="1"
+placeholder="Construction Day"
+>
+
+
+<input
+type="file"
+id="constructionPhoto"
+accept="image/*"
+onchange="previewPhoto()"
+>
+
+
+<button onclick="analyzeConstruction()">
+🔍 Analyze Evidence
+</button>
+
+</div>
+
+
+<div
+id="photoPreview"
+class="photo-preview"
+>
+
+<p>
+<strong>Uploaded construction photo:</strong>
+</p>
+
+<img
+id="previewImage"
+alt="Construction preview"
+>
+
+</div>
+
+
+<div id="visualResult">
+
+<div class="loading">
+
+Upload a construction photo, select the project
+and enter the construction day.
+
+</div>
+
+</div>
+
+
+<div class="disclaimer">
+
+⚠️ Prototype note:
+The uploaded photograph is treated as field evidence.
+The current prototype compares the expected construction
+stage with reported project progress. A production system
+would add a trained computer-vision model for direct
+image-based stage classification.
+
+</div>
+
+</section>
+
+</main>
+
+
+<script>
+
+const API = "http://127.0.0.1:8000";
+
+let projects = [];
+
+
+/* =====================================================
+   LOAD DASHBOARD
+===================================================== */
+
+async function loadDashboard() {
+
+    try {
+
+        const response =
+            await fetch(API + "/anomalies");
+
+        if (!response.ok) {
+            throw new Error("Backend returned an error.");
+        }
+
+        const data =
+            await response.json();
+
+        if (!Array.isArray(data)) {
+            throw new Error("Invalid project data received.");
+        }
+
+        projects = data;
+
+        updateDashboard();
+
+        populateProjects();
+
+        populateVisualProjects();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        document.getElementById("result").innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    Backend connection failed.
+                </strong>
+
+                <p>
+                    Make sure FastAPI is running at
+                    http://127.0.0.1:8000
+                </p>
+
+                <p>
+                    ${error.message}
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   RISK
+===================================================== */
+
+function getRisk(project) {
+
+    const backendRisk =
+        project.risk_level;
+
+    if (backendRisk) {
+
+        const value =
+            backendRisk.toLowerCase();
+
+        if (value === "critical") {
+            return "Critical";
+        }
+
+        if (value === "high") {
+            return "High";
+        }
+
+        if (value === "medium") {
+            return "High";
+        }
+
+        return "Normal";
+    }
+
+    const gap =
+        Math.abs(
+            Number(project.progress_gap || 0)
+        );
+
+    const delay =
+        Number(project.delay_days || 0);
+
+    const cost =
+        Math.abs(
+            Number(
+                project.cost_vs_peer_percent || 0
+            )
+        );
+
+    if (
+        gap >= 40 ||
+        delay >= 45 ||
+        cost >= 30
+    ) {
+        return "Critical";
+    }
+
+    if (
+        gap >= 25 ||
+        delay >= 20 ||
+        cost >= 20
+    ) {
+        return "High";
+    }
+
+    return "Normal";
+}
+
+
+/* =====================================================
+   UPDATE DASHBOARD
+===================================================== */
+
+function updateDashboard() {
+
+    let critical = 0;
+    let high = 0;
+    let normal = 0;
+
+    projects.forEach(project => {
+
+        const risk =
+            getRisk(project);
+
+        if (risk === "Critical") {
+            critical++;
+        }
+
+        else if (risk === "High") {
+            high++;
+        }
+
+        else {
+            normal++;
+        }
+
+    });
+
+    const total =
+        projects.length;
+
+    document.getElementById(
+        "totalProjects"
+    ).textContent = total;
+
+    document.getElementById(
+        "criticalProjects"
+    ).textContent = critical;
+
+    document.getElementById(
+        "highProjects"
+    ).textContent = high;
+
+    document.getElementById(
+        "normalProjects"
+    ).textContent = normal;
+
+    document.getElementById(
+        "criticalCount"
+    ).textContent = critical;
+
+    document.getElementById(
+        "highCount"
+    ).textContent = high;
+
+    document.getElementById(
+        "normalCount"
+    ).textContent = normal;
+
+    document.getElementById(
+        "criticalBar"
+    ).style.width =
+        total
+        ? (critical / total * 100) + "%"
+        : "0%";
+
+    document.getElementById(
+        "highBar"
+    ).style.width =
+        total
+        ? (high / total * 100) + "%"
+        : "0%";
+
+    document.getElementById(
+        "normalBar"
+    ).style.width =
+        total
+        ? (normal / total * 100) + "%"
+        : "0%";
+
+    createProgressBars();
+}
+
+
+/* =====================================================
+   PROJECT DROPDOWN
+===================================================== */
+
+function populateProjects() {
+
+    const select =
+        document.getElementById(
+            "projectSelect"
+        );
+
+    select.innerHTML = `
+
+        <option value="">
+            Choose a project for AI investigation...
+        </option>
+
+    `;
+
+    projects.forEach(project => {
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            project.project_id;
+
+        option.textContent =
+            `${project.project_id} — ${project.district || "Unknown"} — ${project.project_type || "Project"}`;
+
+        select.appendChild(option);
+
+    });
+
+}
+
+
+/* =====================================================
+   VISUAL PROJECT DROPDOWN
+===================================================== */
+
+function populateVisualProjects() {
+
+    const select =
+        document.getElementById(
+            "visualProject"
+        );
+
+    select.innerHTML = `
+
+        <option value="">
+            Select project...
+        </option>
+
+    `;
+
+    projects.forEach(project => {
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            project.project_id;
+
+        option.textContent =
+            `${project.project_id} — ${project.district || "Unknown"}`;
+
+        select.appendChild(option);
+
+    });
+
+}
+
+
+/* =====================================================
+   PROGRESS BARS
+===================================================== */
+
+function createProgressBars() {
+
+    const container =
+        document.getElementById("bars");
+
+    container.innerHTML = "";
+
+    projects
+        .slice(0, 10)
+        .forEach(project => {
+
+            const financial =
+                Number(
+                    project.financial_progress || 0
+                );
+
+            const physical =
+                Number(
+                    project.physical_progress || 0
+                );
+
+            const group =
+                document.createElement("div");
+
+            group.className =
+                "bar-group";
+
+            group.innerHTML = `
+
+                <div
+                    class="bar financial"
+                    title="${project.project_id} Financial ${financial}%"
+                    style="height:${Math.min(financial,100)}%"
+                ></div>
+
+                <div
+                    class="bar physical"
+                    title="${project.project_id} Physical ${physical}%"
+                    style="height:${Math.min(physical,100)}%"
+                ></div>
+
+            `;
+
+            container.appendChild(group);
+
+        });
+
+}
+
+
+/* =====================================================
+   PROJECT INVESTIGATION
+===================================================== */
+
+function investigateProject(id) {
+
+    if (!id) {
+
+        document.getElementById(
+            "result"
+        ).innerHTML = `
+
+            <div class="loading">
+                Select a project above to begin AI investigation.
+            </div>
+
+        `;
+
+        return;
+    }
+
+    const project =
+        projects.find(
+            p =>
+                String(p.project_id)
+                === String(id)
+        );
+
+    if (!project) {
+        return;
+    }
+
+    const sanctioned =
+        Number(
+            project.sanctioned_amount || 0
+        );
+
+    const paid =
+        Number(
+            project.paid_amount || 0
+        );
+
+    let financial =
+        Number(
+            project.financial_progress || 0
+        );
+
+    if (
+        !project.financial_progress &&
+        sanctioned > 0
+    ) {
+
+        financial =
+            (paid / sanctioned) * 100;
+
+    }
+
+    const physical =
+        Number(
+            project.physical_progress || 0
+        );
+
+    let gap =
+        Number(
+            project.progress_gap
+        );
+
+    if (Number.isNaN(gap)) {
+
+        gap =
+            financial - physical;
+
+    }
+
+    gap =
+        Math.abs(gap);
+
+    const expected =
+        Number(
+            project.expected_completion_days || 0
+        );
+
+    const actual =
+        Number(
+            project.actual_days || 0
+        );
+
+    let delay =
+        Number(
+            project.delay_days
+        );
+
+    if (Number.isNaN(delay)) {
+
+        delay =
+            Math.max(
+                0,
+                actual - expected
+            );
+
+    }
+
+    const cost =
+        Number(
+            project.cost_vs_peer_percent || 0
+        );
+
+    const risk =
+        getRisk(project);
+
+    let finding = "";
+    let action = "";
+
+    if (risk === "Critical") {
+
+        finding =
+            `Critical risk detected. The project has a ${gap.toFixed(0)}% progress gap, ${delay.toFixed(0)} days delay and ${cost.toFixed(0)}% cost variation.`;
+
+        action =
+            "Conduct an immediate administrative review, verify expenditure and physical progress records, and obtain updated implementation documents.";
+
+    }
+
+    else if (risk === "High") {
+
+        finding =
+            `The project shows elevated risk with a ${gap.toFixed(0)}% progress gap, ${delay.toFixed(0)} days delay or ${cost.toFixed(0)}% cost variation.`;
+
+        action =
+            "Schedule a review and request updated progress documentation from the implementing agency.";
+
+    }
+
+    else {
+
+        finding =
+            "Financial and physical progress are broadly aligned and no major risk indicator has been detected.";
+
+        action =
+            "Continue routine monitoring and periodic progress verification.";
+
+    }
+
+    let riskClass =
+        "risk-normal";
+
+    if (risk === "Critical") {
+        riskClass = "risk-critical";
+    }
+
+    else if (risk === "High") {
+        riskClass = "risk-high";
+    }
+
+    document.getElementById(
+        "result"
+    ).innerHTML = `
+
+        <div>
+
+            <div class="project-header">
+
+                <div>
+
+                    <h2>
+                        ${project.project_id}
+                    </h2>
+
+                    <p>
+                        ${project.district || "Unknown"}
+                        •
+                        ${project.project_type || "Project"}
+                    </p>
+
+                </div>
+
+                <span class="risk ${riskClass}">
+                    ${risk} Risk
+                </span>
+
+            </div>
+
+
+            <div class="metrics">
+
+                <div class="metric">
+
+                    <span>
+                        Financial Progress
+                    </span>
+
+                    <strong>
+                        ${financial.toFixed(0)}%
+                    </strong>
+
+                </div>
+
+
+                <div class="metric">
+
+                    <span>
+                        Physical Progress
+                    </span>
+
+                    <strong>
+                        ${physical.toFixed(0)}%
+                    </strong>
+
+                </div>
+
+
+                <div class="metric">
+
+                    <span>
+                        Progress Gap
+                    </span>
+
+                    <strong>
+                        ${gap.toFixed(0)}%
+                    </strong>
+
+                </div>
+
+
+                <div class="metric">
+
+                    <span>
+                        Delay
+                    </span>
+
+                    <strong>
+                        ${delay.toFixed(0)} days
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="finding">
+
+                <strong>
+                    🤖 AI Finding
+                </strong>
+
+                <p>
+                    ${finding}
+                </p>
+
+            </div>
+
+
+            <div class="action">
+
+                <strong>
+                    🎯 Recommended Action
+                </strong>
+
+                <p>
+                    ${action}
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   PHOTO PREVIEW
+===================================================== */
+
+function previewPhoto() {
+
+    const input =
+        document.getElementById(
+            "constructionPhoto"
+        );
+
+    const preview =
+        document.getElementById(
+            "photoPreview"
+        );
+
+    const image =
+        document.getElementById(
+            "previewImage"
+        );
+
+    if (
+        input.files &&
+        input.files[0]
+    ) {
+
+        const file =
+            input.files[0];
+
+        const reader =
+            new FileReader();
+
+        reader.onload =
+            function(event) {
+
+                image.src =
+                    event.target.result;
+
+                preview.style.display =
+                    "block";
+
+            };
+
+        reader.readAsDataURL(file);
+
+    }
+
+}
+
+
+/* =====================================================
+   CONSTRUCTION PHOTO ANALYSIS
+===================================================== */
+
+async function analyzeConstruction() {
+
+    const projectId =
+        document.getElementById(
+            "visualProject"
+        ).value;
+
+    const day =
+        Number(
+            document.getElementById(
+                "constructionDay"
+            ).value
+        );
+
+    const photo =
+        document.getElementById(
+            "constructionPhoto"
+        ).files[0];
+
+    const result =
+        document.getElementById(
+            "visualResult"
+        );
+
+
+    /* -----------------------------
+       VALIDATION
+    ----------------------------- */
+
+    if (!projectId) {
+
+        result.innerHTML = `
+
+            <div class="error">
+                Please select a project.
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    if (!day || day < 1) {
+
+        result.innerHTML = `
+
+            <div class="error">
+                Please enter the construction day.
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    if (!photo) {
+
+        result.innerHTML = `
+
+            <div class="error">
+                Please upload a construction photo.
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    /* -----------------------------
+       LOADING
+    ----------------------------- */
+
+    result.innerHTML = `
+
+        <div class="loading">
+
+            🤖 Analyzing construction evidence...
+
+            <br><br>
+
+            Comparing the selected project,
+            construction day and reported progress.
+
+        </div>
+
+    `;
+
+
+    /* -----------------------------
+       FORM DATA
+    ----------------------------- */
+
+    const formData =
+        new FormData();
+
+    formData.append(
+        "project_id",
+        projectId
+    );
+
+    formData.append(
+        "construction_day",
+        day
+    );
+
+    formData.append(
+        "photo",
+        photo
+    );
+
+
+    try {
+
+        /* -----------------------------
+           SEND TO FASTAPI
+        ----------------------------- */
+
+        const response =
+            await fetch(
+                API + "/analyze-construction",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            !data.success
+        ) {
+
+            throw new Error(
+                data.error ||
+                "Construction analysis failed."
+            );
+
+        }
+
+
+        /* -----------------------------
+           STATUS
+        ----------------------------- */
+
+        let statusClass =
+            "status-track";
+
+        if (
+            data.status ===
+            "POTENTIAL DELAY"
+        ) {
+
+            statusClass =
+                "status-delay";
+
+        }
+
+        else if (
+            data.status ===
+            "AHEAD"
+        ) {
+
+            statusClass =
+                "status-ahead";
+
+        }
+
+
+        /* -----------------------------
+           RESULT
+        ----------------------------- */
+
+        result.innerHTML = `
+
+            <div class="visual-card">
+
+
+                <span
+                    class="visual-status ${statusClass}"
+                >
+                    ${data.status}
+                </span>
+
+
+                <h3>
+                    🤖 AI Construction Assessment
+                </h3>
+
+
+                <p>
+
+                    Project
+                    <strong>
+                        ${data.project_id}
+                    </strong>
+
+                    was evaluated for
+
+                    <strong>
+                        Day ${data.construction_day}
+                    </strong>.
+
+                </p>
+
+
+                <div class="visual-grid">
+
+
+                    <div class="visual-metric">
+
+                        <span>
+                            Expected Stage
+                        </span>
+
+                        <strong>
+                            ${data.expected_stage}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="visual-metric">
+
+                        <span>
+                            Reported Stage
+                        </span>
+
+                        <strong>
+                            ${data.reported_stage}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="visual-metric">
+
+                        <span>
+                            Physical Progress
+                        </span>
+
+                        <strong>
+                            ${Number(
+                                data.reported_physical_progress
+                            ).toFixed(0)}%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="visual-grid">
+
+
+                    <div class="visual-metric">
+
+                        <span>
+                            AI Confidence
+                        </span>
+
+                        <strong>
+                            ${data.confidence}%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="visual-metric">
+
+                        <span>
+                            Site Evidence
+                        </span>
+
+                        <strong>
+                            📷 Uploaded
+                        </strong>
+
+                    </div>
+
+
+                    <div class="visual-metric">
+
+                        <span>
+                            Verification
+                        </span>
+
+                        <strong>
+                            ${data.status === "POTENTIAL DELAY"
+                                ? "Field Review"
+                                : "Routine Monitoring"}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="finding">
+
+                    <strong>
+                        📷 Visual Finding
+                    </strong>
+
+                    <p>
+                        ${data.finding}
+                    </p>
+
+                </div>
+
+
+                <div class="action">
+
+                    <strong>
+                        🎯 Recommended Action
+                    </strong>
+
+                    <p>
+                        ${data.recommended_action}
+                    </p>
+
+                </div>
+
+
+                <div class="disclaimer">
+
+                    ℹ️
+                    ${data.verification_note}
+
+                </div>
+
+
+            </div>
+
+        `;
+
+    }
+
+
+    catch (error) {
+
+        console.error(error);
+
+        result.innerHTML = `
+
+            <div class="error">
+
+                <strong>
+                    ❌ Analysis failed
+                </strong>
+
+                <p>
+                    ${error.message}
+                </p>
+
+                <p>
+                    Make sure FastAPI is running at
+                    http://127.0.0.1:8000
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   START APPLICATION
+===================================================== */
+
+loadDashboard();
+
+</script>
+
+</body>
+
+</html>
